@@ -1,0 +1,23 @@
+.ath-form {
+    .btn-group {
+        padding-top: var(--ath-spacing-4);
+
+        .ath-button {
+            width: 100%;
+        }
+    }
+}
+
+.ath-acf {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--ath-spacing-4);
+
+    .ath-field.ath-field__grid-2 {
+        grid-column: span 2;
+    }
+
+    .ath-field.ath-field__grid-4 {
+        grid-column: span 4;
+    }
+}

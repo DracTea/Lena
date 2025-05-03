@@ -1,3 +1,3 @@
-module github.com/dractea/pdfgen
+module github.com/dractea/rpg
 
 go 1.24.1

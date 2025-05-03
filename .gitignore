@@ -23,3 +23,4 @@ go.work.sum
 # env file
 .DS_Store
 artemis.hot
+athena.hot

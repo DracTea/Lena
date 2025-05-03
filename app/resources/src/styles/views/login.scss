@@ -1,0 +1,47 @@
+.view-login {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 18vh;
+
+  .cover {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: rgba(32 54 92 / .25);
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+  }
+
+  .form-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 368px;
+
+    .ath-tile {
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+
+    .no-account {
+      border-top: 1px solid var(--ath-layer-accent-01);
+      padding-top: var(--ath-spacing-4);
+      margin-top: var(--ath-spacing-4);
+
+      a {
+        color: var(--ath-ascent);
+        font-size: 14px;
+      }
+    }
+  }
+}

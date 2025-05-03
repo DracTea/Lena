@@ -1,18 +1,16 @@
 package main
 
 import (
-	"app"
-	"lena"
+	app "app/controllers"
+	"witch/foundation"
+	"witch/routing"
 )
 
 func main() {
-	server := lena.NewServer()
-	server.Boostrap(app.Boostrap)
-
-	server.WithRouting(func(r *lena.Router) {
-		r.Group(app.Web)
-		r.Group(app.Api)
+	server := foundation.Bootstrap()
+	server.WithRouting(func(r *routing.Router) {
+		r.Add("/", *routing.Get(app.IndexGet))
+		r.Add("/about", *routing.Get(app.AboutGet))
 	})
-
 	server.Serve()
 }
