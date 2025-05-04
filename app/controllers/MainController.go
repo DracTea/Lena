@@ -1,6 +1,8 @@
 package app
 
-import "witch/types"
+import (
+	"witch/types"
+)
 
 func IndexGet(ctx types.Context) error {
 	props := map[string]string{"message": "Hello, World!"}
@@ -9,5 +11,20 @@ func IndexGet(ctx types.Context) error {
 }
 
 func AboutGet(ctx types.Context) error {
-	return ctx.Json(map[string]string{"message": "About!"})
+	db := ctx.GetServer().GetModule("db").(types.Database)
+
+	user := struct {
+		ID   int    `db:"id" json:"id"`
+		Name string `db:"name" json:"name"`
+	}{}
+
+	err := db.Get("SELECT * FROM users WHERE id = ?", []any{1}, &user)
+	if err != nil {
+		return ctx.Error(err)
+	}
+
+	return ctx.Json(map[string]any{
+		"message": "About!",
+		"rows":    user,
+	})
 }

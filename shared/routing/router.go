@@ -2,6 +2,7 @@ package routing
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"slices"
 	"strings"
@@ -20,6 +21,13 @@ func (r *Router) wrap(fn types.HandlerFunc, mx []types.Middleware) (out http.Han
 	mx = append(slices.Clone(r.chain), mx...)
 
 	out = http.HandlerFunc(func(wrt http.ResponseWriter, req *http.Request) {
+		defer func() {
+			if err := recover(); err != nil {
+				log.Printf("Recovered from panic: %v\n", err)
+				http.Error(wrt, "Internal Server Error", http.StatusInternalServerError)
+			}
+		}()
+
 		ctx := NewContext(r.server, wrt, req)
 		chain := New(mx...).Then(fn)
 

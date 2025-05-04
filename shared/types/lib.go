@@ -25,6 +25,7 @@ type Server interface {
 }
 
 type Database interface {
+	Get(query string, args []any, dest any) error
 }
 
 type HandlerFunc func(ctx Context) error
