@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"witch/routing"
 	"witch/types"
+
+	"github.com/joho/godotenv"
 )
 
 type Server struct {
@@ -44,6 +46,11 @@ func (s *Server) WithRouting(fn func(*routing.Router)) {
 func Bootstrap() *Server {
 	var notfound types.HandlerFunc = func(ctx types.Context) error {
 		return ctx.Error(errors.New("not found"))
+	}
+
+	err := godotenv.Load()
+	if err != nil {
+		panic("Error loading .env file")
 	}
 
 	s := &Server{

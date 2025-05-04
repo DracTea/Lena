@@ -1,6 +1,8 @@
 package types
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type Session interface {
 }
@@ -11,7 +13,9 @@ type Context interface {
 	Tmpl(name string, data any) error
 	Error(err error) error
 	SetSession(session Session)
+	GetModule(name string) any
 	GetServer() Server
+	GetHeader(key string) string
 	Send()
 }
 
@@ -26,6 +30,10 @@ type Server interface {
 
 type Database interface {
 	Get(query string, args []any, dest any) error
+}
+
+type Template interface {
+	Render(c Context, tmpl string, props any) error
 }
 
 type HandlerFunc func(ctx Context) error

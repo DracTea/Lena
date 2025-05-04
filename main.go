@@ -3,13 +3,17 @@ package main
 import (
 	app "app/controllers"
 	"witch/foundation"
+	"witch/modules"
 	"witch/routing"
+	"witch/types"
 )
 
 func main() {
 	server := foundation.Bootstrap()
-	server.Init(func() {
 
+	server.WithBooting(func(s types.Server) {
+		server.SetModule("db", modules.NewDatabase())
+		server.SetModule("tmpl", routing.NewTmpl())
 	})
 
 	server.WithRouting(func(r *routing.Router) {

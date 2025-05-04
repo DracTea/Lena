@@ -6,4 +6,5 @@ use (
 	./shared/foundation
 	./shared/routing
 	./shared/types
+	./shared/modules
 )

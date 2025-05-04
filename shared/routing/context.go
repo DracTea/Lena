@@ -27,6 +27,14 @@ func (c *Context) SetSession(session types.Session) {
 	c.session = session
 }
 
+func (c *Context) GetHeader(key string) string {
+	return c.req.Header.Get(key)
+}
+
+func (c *Context) GetModule(name string) any {
+	return c.server.GetModule(name)
+}
+
 func (c *Context) Json(data any) error {
 	c.ret.headers["Content-Type"] = "application/json; charset=utf-8"
 	c.ret.body, _ = json.Marshal(data)
@@ -34,16 +42,21 @@ func (c *Context) Json(data any) error {
 	return nil
 }
 
-func (c *Context) Tmpl(name string, data any) error {
-	c.ret.headers["Content-Type"] = "text/html; charset=utf-8"
-	c.ret.body, _ = json.Marshal(data)
-
-	return nil
+func (c *Context) Tmpl(tmpl string, props any) error {
+	t := c.GetModule("tmpl").(types.Template)
+	return t.Render(c, tmpl, props)
 }
 
 func (c *Context) Html(html []byte) error {
 	c.ret.headers["Content-Type"] = "text/html; charset=utf-8"
 	c.ret.body = html
+	return nil
+}
+
+func (c *Context) Redirect(url string) error {
+	c.ret.headers["Location"] = url
+	c.ret.status = http.StatusFound
+
 	return nil
 }
 

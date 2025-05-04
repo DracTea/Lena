@@ -11,14 +11,15 @@ func IndexGet(ctx types.Context) error {
 }
 
 func AboutGet(ctx types.Context) error {
-	db := ctx.GetServer().GetModule("db").(types.Database)
+	db := ctx.GetModule("db").(types.Database)
 
 	user := struct {
-		ID   int    `db:"id" json:"id"`
-		Name string `db:"name" json:"name"`
+		ID    int    `db:"id" json:"id"`
+		Name  string `db:"name" json:"name"`
+		Email string `db:"email" json:"email"`
 	}{}
 
-	err := db.Get("SELECT * FROM users WHERE id = ?", []any{1}, &user)
+	err := db.Get("SELECT id,name,email FROM ap_users WHERE id = ?", []any{2}, &user)
 	if err != nil {
 		return ctx.Error(err)
 	}
