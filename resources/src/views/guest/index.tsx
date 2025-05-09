@@ -4,7 +4,7 @@ export default function View() {
 
   return (
     <div>
-      <h1>Error</h1>
+      <h1>homepage</h1>
     </div>
   )
 }

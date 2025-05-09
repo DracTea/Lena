@@ -21,6 +21,7 @@ type Context interface {
 
 type Router interface {
 	GetMux() *http.ServeMux
+	Public()
 }
 
 type Server interface {

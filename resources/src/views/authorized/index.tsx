@@ -1,38 +1,36 @@
-import '@/styles/views/dashboard.scss';
-import { Header } from "@/components/ui/shell";
-import { PlaceholderPattern } from "@/components/ui/common";
+import { Header,Tile } from '@/sora/common';
 
 const breadcrumbs = [
   { label: 'Home', href: '/apanel', current: true },
 ];
 
-function View() {
-
+export default function View() {
 
   return (
-    <>
+    <main className="view">
       <Header breadcrumbs={breadcrumbs} />
-      <main id="view" className="view-padding padding-block">
-        <div className="views-dashboard">
-          <div className="grid">
-            <div className="tile">
-              <PlaceholderPattern />
-            </div>
-            <div className="tile">
-              <PlaceholderPattern />
-            </div>
-            <div className="tile">
-              <PlaceholderPattern />
-            </div>
-          </div>
-          <div className="tile">
-            <PlaceholderPattern />
+      <div className="container-md container-dashboard">
+        <div className="container-flex-col">
+        <Tile fullWidth>
+          <h1>Map</h1>
+        </Tile>
+          <div>
+            <img src="/assets/map.png" alt="Map" />
           </div>
         </div>
-      </main>
-    </>
+        <div className="container-flex-col">
+          <Tile fullWidth>
+            <h1>Action</h1>
+          </Tile>
+          <Tile fullWidth>
+            <h1>Quests</h1>
+          </Tile>
+        </div>
+        <Tile fullWidth>
+          <h1>Profile</h1>
+        </Tile>
+      </div>
+    </main>
   )
 }
-
-export default View
 

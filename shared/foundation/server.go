@@ -60,6 +60,7 @@ func Bootstrap() *Server {
 	}
 
 	s.router = routing.NewRouter(s, notfound)
+	s.router.Public()
 	s.Options["port"] = "8080"
 	return s
 }

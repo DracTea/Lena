@@ -7,7 +7,7 @@ import (
 func IndexGet(ctx types.Context) error {
 	props := map[string]string{"message": "Hello, World!"}
 
-	return ctx.Tmpl("index", props)
+	return ctx.Tmpl("authorized/index", props)
 }
 
 func AboutGet(ctx types.Context) error {

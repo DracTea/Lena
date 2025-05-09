@@ -1,0 +1,14 @@
+.sora-tile {
+  padding: 1rem;
+  display: inline-flex;
+  flex-direction: column;
+
+  &.sora-tile__full {
+    width: 100%;
+  }
+
+  &:not(.sora-tile__ghost) {
+    background-color: var(--ath-layer-01, #fff);
+    box-shadow: var(--ath-layer-shadow-01);
+  }
+}

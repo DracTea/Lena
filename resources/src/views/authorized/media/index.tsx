@@ -2,7 +2,7 @@ import { Header } from '@/sora/common';
 
 const breadcrumbs = [
   { label: 'Home', href: '/apanel' },
-  { label: 'Settings', href: '/apanel/settings', current: true },
+  { label: 'Media', href: '/apanel/media', current: true },
 ];
 
 export default function View() {
@@ -11,7 +11,7 @@ export default function View() {
     <main className="view">
       <Header breadcrumbs={breadcrumbs} />
       <div className="container-padding">
-      <h1>Settings</h1>
+      <h1>media</h1>
       </div>
     </main>
   )

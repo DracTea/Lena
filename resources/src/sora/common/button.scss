@@ -1,0 +1,114 @@
+.ath-button {
+  outline: none;
+  border: none;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  padding-block: 14px;
+  padding-inline: 15px 64px;
+  transition: background-color 400ms ease, color 400ms ease;
+
+  .ath-button__text {
+    font-size: 14px;
+    line-height: 1;
+    display: inline-flex;
+    font-weight: 500;
+  }
+
+  .ath-button__icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: auto;
+  }
+
+  &.ath-button__icon-only {
+    height: 47px;
+    aspect-ratio: 1/1;
+    padding: 0;
+
+    .ath-button__icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: auto;
+    }
+  }
+
+  &.ath-button--size-lg {
+    height: 54px;
+  }
+
+  &.ath-button--size-md {
+    height: var(--ath-block);
+  }
+
+  &.ath-button--size-sm {
+    height: 40px;
+  }
+
+  &.ath-button--default {
+    border: 1px solid var(--cds-button-primary, #0f62fe);
+    background-color: var(--cds-button-primary, #0f62fe);
+    color: var(--cds-text-on-color, #ffffff);
+
+    &:hover {
+      background-color: var(--cds-button-primary-hover, #0050e6);
+      color: var(--cds-text-on-color, #ffffff);
+    }
+  }
+
+  &.ath-button--secondary {
+    border: 1px solid var(--cds-button-secondary, #393939);
+    background-color: var(--cds-button-secondary, #393939);
+    color: var(--cds-text-on-color, #ffffff);
+
+    &:hover {
+      background-color: var(--cds-button-secondary-hover, #474747);
+      color: var(--cds-text-on-color, #ffffff);
+    }
+  }
+
+  &.ath-button--tertiary {
+    border: 1px solid var(--cds-button-primary-hover, #0050e6);
+    background-color: var(--cds-button-primary, trasparent);
+    color: var(--cds-button-primary-hover, #0050e6);
+
+    &:hover {
+      background-color: var(--cds-button-primary-hover, #0050e6);
+      color: var(--cds-text-on-color, #ffffff);
+    }
+  }
+
+  &.ath-button--danger {
+    border: 1px solid var(--cds-button-danger-primary, #da1e28);
+    background-color: var(--cds-button-danger-primary, #da1e28);
+    color: var(--cds-text-on-color, #ffffff);
+
+    &:hover {
+      background-color: var(--cds-button-danger-hover, #b81921);
+      color: var(--ath-text-on-color, #ffffff);
+    }
+  }
+
+  &.ath-button--ghost {
+    color: var(--ath-button-secondary);
+
+
+    svg {
+      fill: var(--ath-text-primary);
+    }
+
+    &:hover {
+      background-color: var(--cds-background-hover,
+          rgba(141, 141, 141, 0.12));
+    }
+  }
+}

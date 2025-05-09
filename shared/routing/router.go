@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"path"
+	"path/filepath"
 	"slices"
 	"strings"
 	"witch/types"
@@ -41,6 +44,37 @@ func (r *Router) wrap(fn types.HandlerFunc, mx []types.Middleware) (out http.Han
 	})
 
 	return out
+}
+
+func (r *Router) Public() {
+	r.mux.Handle(http.MethodGet+" "+"/assets/{pathname...}", http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		publicDir := "./public"
+
+		// Get the path after "/public/"
+		pathname := strings.TrimPrefix(req.URL.Path, "/assets/")
+		// Clean the path to prevent directory traversal attacks
+		cleanPath := path.Clean(pathname)
+		filePath := filepath.Join(publicDir, cleanPath)
+		fileInfo, err := os.Stat(filePath)
+		if err != nil {
+			if os.IsNotExist(err) {
+				http.Error(w, "404 file not found", http.StatusNotFound)
+				return
+			}
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+
+		// Don't serve directories directly
+		if fileInfo.IsDir() {
+			http.Error(w, "403 forbidden", http.StatusForbidden)
+			return
+		}
+
+		// Serve the file
+		http.ServeFile(w, req, filePath)
+
+	}))
 }
 
 func (r *Router) GetMux() *http.ServeMux {

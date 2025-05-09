@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import type { ComponentType } from 'react';
-import { createApp } from '@/components/ui/router';
-
+import { createApp } from '@/sora/routing';
+import { GuestLayout, AuthLayout } from '@/components/layouts';
 interface PageModule {
   default: ComponentType;
 }
@@ -9,10 +9,11 @@ interface PageModule {
 createApp({
   resolve: (name: string) => {
     const pages = import.meta.glob<PageModule>('./views/**/*.tsx', { eager: true })
-    let pg = pages[`./views/${name}.tsx`]
-    if (!pg) pg = pages[`./views/error.tsx`]
+    const pg = pages[`./views/${name}.tsx`]
+    if (!pg) return [pages['./views/error.tsx'].default, GuestLayout]
 
-    return pg.default
+    const Layout = name.includes('authorized/') ? AuthLayout : GuestLayout;
+    return [pg.default, Layout]
   },
   setup({ el, App, props }) {
     createRoot(el).render(<App {...props} />)

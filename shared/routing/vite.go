@@ -80,15 +80,15 @@ func cssFile(url string) string {
 func viteDev() string {
 	cont := `
 	   <script type="module">
-      import RefreshRuntime from 'http://[::1]:5142/@react-refresh';
+      import RefreshRuntime from 'http://[::1]:5143/@react-refresh';
       RefreshRuntime.injectIntoGlobalHook(window);
       window.$RefreshReg$ = () => {};
       window.$RefreshSig$ = () => (type) => type;
       window.__vite_plugin_react_preamble_installed__ = true;
     </script>
 
-    <script type="module" src="http://[::1]:5142/@vite/client"></script>
-    <script type="module" src="http://[::1]:5142/src/main.tsx"></script>
+    <script type="module" src="http://[::1]:5143/@vite/client"></script>
+    <script type="module" src="http://[::1]:5143/src/main.tsx"></script>
 	`
 
 	return cont

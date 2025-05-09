@@ -1,0 +1,54 @@
+.ath-text {
+  font-weight: 400;
+  font-variation-settings: "wght" 400;
+  color: var(--ath-text-primary);
+
+  &.ath-text-weight--normal {
+    font-weight: 400;
+    font-variation-settings: "wght" 400;
+  }
+
+  &.ath-text-weight--bold {
+    font-weight: 600;
+    font-variation-settings: "wght" 600;
+  }
+
+  &.ath-text-weight--medium {
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+  }
+
+  &.ath-text-variant--headingLg {
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+  }
+
+  &.ath-text-variant--headingMd {
+    font-size: 1.8rem;
+    line-height: 2rem;
+  }
+
+  &.ath-text-variant--headingSm {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  &.ath-text-variant--bodyLg {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+
+  &.ath-text-variant--bodyMd {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  &.ath-text-variant--bodySm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  &.ath-text-type--secondary {
+    color: var(--ath-text-secondary);
+  }
+}
